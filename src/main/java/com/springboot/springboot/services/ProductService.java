@@ -30,4 +30,9 @@ public class ProductService {
 	public Product filterProducts(Predicate<Product> strategy) {
 		return getAllProducts().stream().filter(strategy).findFirst().orElse(null);
 	}
+
+    public Product addProduct(Product newProduct) {
+        newProduct.setId("126");
+        return newProduct;
+    }
 }
