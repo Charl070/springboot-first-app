@@ -21,9 +21,15 @@ public class ProductsController {
     ProductService productService;
 
     @GetMapping("/products")
-    public List<Product> getAllProducts() {
+    public ResponseEntity<List<Product>> getAllProducts() {
 
-        return productService.getAllProducts();
+        List<Product> products = productService.getAllProducts();
+
+        if(products == null) {
+            return new ResponseEntity<> (products, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<> (products, HttpStatus.OK);
     }
 
     @GetMapping("/product/{id}")
